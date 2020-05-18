@@ -1,14 +1,6 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  OneToMany,
-  JoinColumn,
-} from 'typeorm';
-import Assembleia from './AssembleiaModel';
-import Sessao from './SessaoModel';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('pauta')
+@Entity('pautas')
 class Pauta {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -20,11 +12,7 @@ class Pauta {
   descricao: string;
 
   @Column()
-  sessao_id: string;
-
-  @OneToMany(() => Sessao, sessao => sessao.id)
-  @JoinColumn({ name: 'sessao_id' })
-  sessao: Sessao[];
+  assembleia_id: string;
 }
 
 export default Pauta;

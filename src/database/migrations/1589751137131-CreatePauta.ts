@@ -27,28 +27,10 @@ export default class CreatePauta1589751137131 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'sessao_id',
+            name: 'assembleia_id',
             type: 'uuid',
-            isNullable: true,
-          },
-          {
-            name: 'created_at',
-            type: 'timestamp',
-            default: 'now()',
           },
         ],
-      }),
-      true,
-    );
-
-    await queryRunner.createForeignKey(
-      'pautas',
-      new TableForeignKey({
-        name: 'pk_pauta_sessao',
-        columnNames: ['sessao_id'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'sessao',
-        onDelete: 'CASCADE',
       }),
     );
   }

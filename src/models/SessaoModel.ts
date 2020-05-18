@@ -1,12 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  OneToMany,
-  JoinColumn,
-} from 'typeorm';
-
-import Voto from './VotoModel';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('sessao')
 class Sessao {
@@ -19,12 +11,8 @@ class Sessao {
   @Column()
   fim: Date;
 
-  @OneToMany(() => Voto, voto => voto.id)
-  @JoinColumn({ name: 'voto_id' })
-  voto: Voto[];
-
   @Column()
-  voto_id: string;
+  pauta_id: string;
 }
 
 export default Sessao;

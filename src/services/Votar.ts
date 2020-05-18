@@ -1,17 +1,23 @@
 import { getCustomRepository } from 'typeorm';
 import Voto from '../models/VotoModel';
 import VotoRepository from '../repositories/VotoRepository';
+import sessaoRepository from '../repositories/sessaoRepository';
 
 interface Request {
+  sessao: string;
   voto: boolean;
-  usuario_id: string;
+  usuario: string;
 }
 
 class Votar {
-  public async execute({ voto, usuario_id }: Request): Promise<Voto> {
+  public async execute({ sessao, voto, usuario }: Request): Promise<Voto> {
     const votoRepository = getCustomRepository(VotoRepository);
 
-    const votoConc = votoRepository.create({ voto, usuario_id });
+    // Regra Validar Sessao
+
+    // Regra Validar Usuario
+
+    const votoConc = votoRepository.create({ sessao, voto, usuario });
 
     await votoRepository.save(votoConc);
 

@@ -1,9 +1,4 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export default class CreateAssembleia1589751149837
   implements MigrationInterface {
@@ -20,7 +15,7 @@ export default class CreateAssembleia1589751149837
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'pauta',
+            name: 'assembleia',
             type: 'varchar',
           },
           {
@@ -28,28 +23,10 @@ export default class CreateAssembleia1589751149837
             type: 'varchar',
           },
           {
-            name: 'pauta_id',
-            type: 'uuid',
-            isNullable: true,
-          },
-          {
-            name: 'created_at',
+            name: 'data',
             type: 'timestamp',
-            default: 'now()',
           },
         ],
-      }),
-      true,
-    );
-
-    await queryRunner.createForeignKey(
-      'assembleias',
-      new TableForeignKey({
-        name: 'pk_assembleia_pauta',
-        columnNames: ['pauta_id'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'pautas',
-        onDelete: 'CASCADE',
       }),
     );
   }

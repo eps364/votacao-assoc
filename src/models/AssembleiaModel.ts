@@ -8,7 +8,7 @@ import {
 
 import Pauta from './PautaModel';
 
-@Entity('assembleia')
+@Entity('assembleias')
 class Assembleia {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -21,13 +21,6 @@ class Assembleia {
 
   @Column()
   data: Date;
-
-  @Column()
-  pauta_id: string;
-
-  @OneToMany(() => Pauta, pauta => pauta.id)
-  @JoinColumn({ name: 'pauta_id' })
-  pauta: Pauta[];
 }
 
 export default Assembleia;
