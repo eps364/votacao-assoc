@@ -5,9 +5,9 @@ import UsuarioCriar from '../services/UsuarioCriar';
 
 const usuarioRouter = Router();
 
-usuarioRouter.get('/', (request, response) => {
+usuarioRouter.get('/', async (request, response) => {
   const usuarioRepository = getCustomRepository(UsuarioRepository);
-  const usuarios = usuarioRepository.find();
+  const usuarios = await usuarioRepository.find();
   return response.json(usuarios);
 });
 
