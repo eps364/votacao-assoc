@@ -1,11 +1,15 @@
 import { Router } from 'express';
+import { getCustomRepository } from 'typeorm';
 import Votar from '../services/Votar';
+import VotarRepository from '../repositories/VotoRepository';
 
 const votoRouter = Router();
 
-votoRouter.get('/', (request, response) =>
-  response.json({ message: 'Assembleia OK' }),
-);
+votoRouter.get('/', async (request, response) => {
+  const votarRepository = getCustomRepository(VotarRepository);
+  const votos = await votarRepository.find();
+  return response.json(votos);
+});
 
 votoRouter.post('/', async (request, response) => {
   try {

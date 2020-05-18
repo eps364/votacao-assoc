@@ -1,11 +1,15 @@
 import { Router } from 'express';
+import { getCustomRepository } from 'typeorm';
 import SessaoCriar from '../services/SessaoCriar';
+import SessaoRepository from '../repositories/SessaoRepository';
 
 const sessaoRouter = Router();
 
-sessaoRouter.get('/', (request, response) =>
-  response.json({ message: 'Sessao OK' }),
-);
+sessaoRouter.get('/', async (request, response) => {
+  const sessaoRepository = getCustomRepository(SessaoRepository);
+  const sessoes = await sessaoRepository.find();
+  return response.json(sessoes);
+});
 
 sessaoRouter.post('/', async (request, response) => {
   try {
