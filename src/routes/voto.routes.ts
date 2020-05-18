@@ -9,11 +9,11 @@ votoRouter.get('/', (request, response) =>
 
 votoRouter.post('/', async (request, response) => {
   try {
-    const { sessao, voto, usuario } = request.body;
+    const { sessao_id, voto, usuario_id } = request.body;
 
     const votar = new Votar();
 
-    const votoConcluido = await votar.execute({ sessao, voto, usuario });
+    const votoConcluido = await votar.execute({ sessao_id, voto, usuario_id });
 
     return response.json(votoConcluido);
   } catch (err) {

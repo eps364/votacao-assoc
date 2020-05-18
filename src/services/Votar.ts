@@ -4,20 +4,24 @@ import VotoRepository from '../repositories/VotoRepository';
 import sessaoRepository from '../repositories/sessaoRepository';
 
 interface Request {
-  sessao: string;
+  sessao_id: string;
   voto: boolean;
-  usuario: string;
+  usuario_id: string;
 }
 
 class Votar {
-  public async execute({ sessao, voto, usuario }: Request): Promise<Voto> {
+  public async execute({
+    sessao_id,
+    voto,
+    usuario_id,
+  }: Request): Promise<Voto> {
     const votoRepository = getCustomRepository(VotoRepository);
 
     // Regra Validar Sessao
 
     // Regra Validar Usuario
 
-    const votoConc = votoRepository.create({ sessao, voto, usuario });
+    const votoConc = votoRepository.create({ sessao_id, voto, usuario_id });
 
     await votoRepository.save(votoConc);
 

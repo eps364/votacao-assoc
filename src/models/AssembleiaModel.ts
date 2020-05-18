@@ -5,7 +5,6 @@ import {
   OneToMany,
   JoinColumn,
 } from 'typeorm';
-
 import Pauta from './PautaModel';
 
 @Entity('assembleias')
