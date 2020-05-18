@@ -5,11 +5,12 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export default class CreateVoto1589751117576 implements MigrationInterface {
+export default class CreateAssembleia1589751149837
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'votos',
+        name: 'assembleias',
         columns: [
           {
             name: 'id',
@@ -19,12 +20,15 @@ export default class CreateVoto1589751117576 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'voto',
-            type: 'boolean',
-            isNullable: false,
+            name: 'pauta',
+            type: 'varchar',
           },
           {
-            name: 'usuario_id',
+            name: 'descricao',
+            type: 'varchar',
+          },
+          {
+            name: 'pauta_id',
             type: 'uuid',
             isNullable: true,
           },
@@ -39,18 +43,19 @@ export default class CreateVoto1589751117576 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'votos',
+      'assembleias',
       new TableForeignKey({
-        name: 'pk_voto_usuario',
-        columnNames: ['usuario_id'],
+        name: 'pk_assembleia_pauta',
+        columnNames: ['pauta_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'usuarios',
+        referencedTableName: 'pautas',
+        onDelete: 'CASCADE',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     // await queryRunner.dropForeignKey('pk_voto_usuario', 'voto');
-    await queryRunner.dropTable('votos');
+    await queryRunner.dropTable('assembleias');
   }
 }
