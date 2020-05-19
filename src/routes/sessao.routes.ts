@@ -14,7 +14,7 @@ sessaoRouter.get('/', async (request, response) => {
 
 sessaoRouter.post('/', async (request, response) => {
   try {
-    const { inicio, pauta_id, duracao } = request.body;
+    const { inicio, pautaId, duracao } = request.body;
 
     if (duracao) {
       const fim = add(new Date(inicio), { minutes: duracao });
@@ -24,7 +24,7 @@ sessaoRouter.post('/', async (request, response) => {
 
     const criarSessao = new SessaoCriar();
 
-    const sessao = await criarSessao.execute({ inicio, fim, pauta_id });
+    const sessao = await criarSessao.execute({ inicio, fim, pautaId });
 
     return response.json(sessao);
   } catch (err) {

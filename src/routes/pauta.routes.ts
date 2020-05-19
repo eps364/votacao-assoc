@@ -9,14 +9,14 @@ pautaRouter.get('/', (request, response) =>
 
 pautaRouter.post('/', async (request, response) => {
   try {
-    const { pauta, descricao, assembleia_id } = request.body;
+    const { pauta, descricao, assembleiaId } = request.body;
 
     const criarPauta = new PautaCriar();
 
     const pautaConc = await criarPauta.execute({
       pauta,
       descricao,
-      assembleia_id,
+      assembleiaId,
     });
 
     return response.json(pautaConc);

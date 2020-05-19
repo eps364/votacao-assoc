@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Entity,
   Column,
   PrimaryGeneratedColumn,
@@ -10,7 +11,7 @@ import Assembleia from './AssembleiaModel';
 import Sessao from './SessaoModel';
 
 @Entity('pautas')
-class Pauta {
+class Pauta extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -21,18 +22,18 @@ class Pauta {
   descricao: string;
 
   @Column()
-  assembleia_id: string;
+  assembleiaId: string;
 
   @ManyToOne(() => Assembleia)
-  @JoinColumn({ name: 'assembleia_id' })
+  @JoinColumn({ name: 'assembleiaId' })
   assembleia: Assembleia[];
 
   @Column()
-  sessao_id: string;
+  sessaoId: string;
 
   @OneToMany(() => Sessao, sessao => sessao.id)
-  @JoinColumn({ name: 'sessao_id' })
-  sessoes: Sessao[];
+  @JoinColumn({ name: 'sessaoId' })
+  sessao: Sessao[];
 }
 
 export default Pauta;

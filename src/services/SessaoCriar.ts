@@ -6,19 +6,19 @@ import PautaRepository from '../repositories/PautaRepository';
 interface Request {
   inicio: datetime;
   fim: datetime;
-  pauta_id: string;
+  pautaId: string;
 }
 
 class SessaoCriar {
-  public async execute({ inicio, fim, pauta_id }: Request): Promise<Sessao> {
+  public async execute({ inicio, fim, pautaId }: Request): Promise<Sessao> {
     const sessaoRepository = getCustomRepository(SessaoRepository);
     const pautaRepository = getCustomRepository(PautaRepository);
 
-    const pauta = await pautaRepository.findOne(pauta_id);
+    const pauta = await pautaRepository.findOne(pautaId);
 
     if (!pauta) throw new Error('Pauta não encontrada!');
 
-    const sessao = sessaoRepository.create({ inicio, fim, pauta_id });
+    const sessao = sessaoRepository.create({ inicio, fim, pautaId });
 
     await sessaoRepository.save(sessao);
 

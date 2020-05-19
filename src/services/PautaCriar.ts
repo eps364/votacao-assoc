@@ -6,29 +6,29 @@ import AssembleiaRepository from '../repositories/AssembleiaRepository';
 interface Request {
   pauta: string;
   descricao: string;
-  assembleia_id: string;
+  assembleiaId: string;
 }
 
 class AssembleiaCriar {
   public async execute({
     pauta,
     descricao,
-    assembleia_id,
+    assembleiaId,
   }: Request): Promise<Pauta> {
     const pautaRepository = getCustomRepository(PautaRepository);
     const assembleiaRepository = getCustomRepository(AssembleiaRepository);
 
-    const assembleia = await assembleiaRepository.findOne(assembleia_id);
+    const assembleia = await assembleiaRepository.findOne(assembleiaId);
 
     if (!assembleia) throw new Error('Assembleia não encontrada!');
 
     const pautaConc = pautaRepository.create({
       pauta,
       descricao,
-      assembleia_id,
+      assembleiaId,
     });
 
-    // await pautaRepository.save(pautaConc);
+    await pautaRepository.save(pautaConc);
 
     return pautaConc;
   }

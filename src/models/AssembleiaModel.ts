@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Entity,
   Column,
   PrimaryGeneratedColumn,
@@ -8,7 +9,7 @@ import {
 import Pauta from './PautaModel';
 
 @Entity('assembleias')
-class Assembleia {
+class Assembleia extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
