@@ -1,12 +1,14 @@
 {
   "type":"postgres",
-  "host":"localhost",
-  "port":5432,
-  "username":"docker",
-  "password":"docker",
-  "database":"votacao",
-
+  "host":"ec2-52-87-135-240.compute-1.amazonaws.com",
+  "port":"5432",
+  "username":"dkezrweqovcact",
+  "password":"5b9157bfb39c9af0ccf659e33f62b5e6633e8dfb3809c2df74d3324d613bb48c",
+  "database":"d2q48d31ogq90d",
+  "synchronize": "true",
+  "logging": "true",
+  "entities": [ "./src/models/*.ts", "./dist/models/*.js"],
   "migrations":[ "./src/database/migrations/*.ts" ],
-  "cli": {"migrationsDir" : "./src/database/migrations" },
-  "entities": [ "./src/models/*.ts"]
+  "cli": {"migrationsDir" : "./src/database/migrations" }
+
 }
