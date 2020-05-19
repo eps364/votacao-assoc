@@ -5,7 +5,7 @@
   "repository": "https://github.com/eps364/votacao-assoc.git",
   "author": "Emerson Pereira da Silva <pereiradasilva.emerson@gmail.com>",
   "license": "MIT",
-  "engines": { "node": "12.16.x" }
+  "engines": { "node": "12.16.x" },
   "scripts": {
     "start":"node dist/server.js",
     "build": "tsc",
