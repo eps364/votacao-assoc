@@ -32,6 +32,17 @@ class Votar {
     const usuario = await usuarioRepository.findOne({ id: usuarioId });
     if (!usuario) throw new Error('Usuario não encontrada!');
 
+    const jaVotou = await votoRepository.find({
+      where: [
+        {
+          sessaoId,
+          usuarioId,
+        },
+      ],
+    });
+
+    if (jaVotou.length > 0) throw new Error('Usuario já votou nesta sessao!');
+
     // Verificar autorização de usuario na API externação
     // https://user-info.herokuapp.com/users/99999999900
     try {
@@ -43,17 +54,6 @@ class Votar {
     } catch (error) {
       throw new Error(`API status: ${error}`);
     }
-
-    const jaVotou = await votoRepository.find({
-      where: [
-        {
-          sessaoId,
-          usuarioId,
-        },
-      ],
-    });
-
-    if (jaVotou.length > 0) throw new Error('Usuario já votou nesta sessao!');
 
     const votoConc = votoRepository.create({ sessaoId, voto, usuarioId });
 
