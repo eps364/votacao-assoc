@@ -33,13 +33,16 @@ class Votar {
     if (!usuario) throw new Error('Usuario não encontrada!');
 
     // Verificar autorização de usuario na API externação
-    // https://user-info.herokuapp.com/users/00116054050
-    const { data, status } = await axios.get(
-      `https://user-info.herokuapp.com/users/${usuario.cpf}`,
-    );
-
-    if (!(data.status === 'ABLE_TO_VOTE'))
-      throw new Error(`API status: ${data.status}`);
+    // https://user-info.herokuapp.com/users/99999999900
+    try {
+      const { data } = await axios.get(
+        `https://user-info.herokuapp.com/users/${usuario.cpf}`,
+      );
+      if (!(data.status === 'ABLE_TO_VOTE'))
+        throw new Error(`API status: ${data.status}`);
+    } catch (error) {
+      throw new Error(`API status: ${error}`);
+    }
 
     const jaVotou = await votoRepository.find({
       where: [
