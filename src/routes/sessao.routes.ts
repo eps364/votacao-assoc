@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { add } from 'date-fns';
 import { getCustomRepository } from 'typeorm';
 import SessaoCriar from '../services/SessaoCriar';
 import SessaoRepository from '../repositories/SessaoRepository';
@@ -13,7 +14,13 @@ sessaoRouter.get('/', async (request, response) => {
 
 sessaoRouter.post('/', async (request, response) => {
   try {
-    const { inicio, fim, pauta_id } = request.body;
+    const { inicio, pauta_id, duracao } = request.body;
+
+    if (duracao) {
+      const fim = add(new Date(inicio), { minutes: duracao });
+    } else {
+      const fim = add(new Date(inicio), { minutes: 1 });
+    }
 
     const criarSessao = new SessaoCriar();
 
