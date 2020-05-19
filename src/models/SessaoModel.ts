@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import Pauta from './PautaModel';
+import Voto from './VotoModel';
 
 @Entity('sessao')
 class Sessao {
@@ -21,9 +23,12 @@ class Sessao {
   @Column()
   pauta_id: string;
 
-  @ManyToOne(() => Pauta)
+  @ManyToOne(() => Pauta, pauta => pauta.id)
   @JoinColumn({ name: 'pauta_id' })
-  sessao: Pauta[];
+  pauta: Pauta;
+
+  @OneToMany(() => Voto, voto => voto.sessao)
+  votos: Voto[];
 }
 
 export default Sessao;

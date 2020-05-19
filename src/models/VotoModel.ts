@@ -3,6 +3,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   OneToOne,
+  ManyToOne,
   JoinColumn,
 } from 'typeorm';
 import Usuario from './UsuarioModel';
@@ -14,6 +15,9 @@ class Voto {
   id: string;
 
   @Column()
+  voto: boolean;
+
+  @Column()
   usuario_id: string;
 
   @OneToOne(() => Usuario)
@@ -23,12 +27,9 @@ class Voto {
   @Column()
   sessao_id: string;
 
-  @OneToOne(() => Usuario)
+  @ManyToOne(() => Sessao)
   @JoinColumn({ name: 'sessao_id' })
   sessao: Sessao;
-
-  @Column()
-  voto: boolean;
 }
 
 export default Voto;
