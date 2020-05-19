@@ -1,11 +1,15 @@
 import { Router } from 'express';
+import { getCustomRepository } from 'typeorm';
 import AssembleiaCriar from '../services/AssembleiaCriar';
+import AssembleiaRepository from '../repositories/AssembleiaRepository';
 
 const assembleiaRouter = Router();
 
-assembleiaRouter.get('/', (request, response) =>
-  response.json({ message: 'Assembleia OK' }),
-);
+assembleiaRouter.get('/', async (request, response) => {
+  const assembleiaRepository = getCustomRepository(AssembleiaRepository);
+  const aseembleias = await assembleiaRepository.find();
+  return response.json(aseembleias);
+});
 
 assembleiaRouter.post('/', async (request, response) => {
   try {

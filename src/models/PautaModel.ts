@@ -28,11 +28,8 @@ class Pauta extends BaseEntity {
   @JoinColumn({ name: 'assembleiaId' })
   assembleia: Assembleia[];
 
-  @Column()
-  sessaoId: string;
-
   @OneToMany(() => Sessao, sessao => sessao.id)
-  @JoinColumn({ name: 'sessaoId' })
+  @JoinColumn({ name: 'id' })
   sessao: Sessao[];
 }
 
