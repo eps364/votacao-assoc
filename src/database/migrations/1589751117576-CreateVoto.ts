@@ -19,7 +19,7 @@ export default class CreateVoto1589751117576 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'sessao_id',
+            name: 'sessaoId',
             type: 'uuid',
             isNullable: true,
           },
@@ -29,7 +29,7 @@ export default class CreateVoto1589751117576 implements MigrationInterface {
             isNullable: false,
           },
           {
-            name: 'usuario_id',
+            name: 'usuarioId',
             type: 'uuid',
             isNullable: true,
           },
@@ -47,7 +47,7 @@ export default class CreateVoto1589751117576 implements MigrationInterface {
       'votos',
       new TableForeignKey({
         name: 'pk_voto_usuario',
-        columnNames: ['usuario_id'],
+        columnNames: ['usuarioId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'usuarios',
       }),

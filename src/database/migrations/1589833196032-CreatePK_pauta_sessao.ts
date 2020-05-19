@@ -7,7 +7,7 @@ export default class CreatePKPautaSessao1589833196032
       'sessao',
       new TableForeignKey({
         name: 'fk_pauta_sessao',
-        columnNames: ['pauta_id'],
+        columnNames: ['pautaId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'pautas',
       }),

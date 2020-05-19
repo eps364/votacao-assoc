@@ -22,7 +22,7 @@ export default class CreateSessao1589751129978 implements MigrationInterface {
             type: 'timestamp',
           },
           {
-            name: 'pauta_id',
+            name: 'pautaId',
             type: 'uuid',
             isNullable: true,
           },

@@ -7,7 +7,7 @@ export default class CreatePKVotoSessao1589833228798
       'votos',
       new TableForeignKey({
         name: 'fk_voto_usuario',
-        columnNames: ['usuario_id'],
+        columnNames: ['usuarioId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'usuarios',
       }),
@@ -17,7 +17,7 @@ export default class CreatePKVotoSessao1589833228798
       'votos',
       new TableForeignKey({
         name: 'fk_voto_sessao',
-        columnNames: ['sessao_id'],
+        columnNames: ['sessaoId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'sessao',
       }),

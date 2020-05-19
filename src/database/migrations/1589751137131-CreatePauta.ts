@@ -27,7 +27,7 @@ export default class CreatePauta1589751137131 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'assembleia_id',
+            name: 'assembleiaId',
             type: 'uuid',
           },
         ],

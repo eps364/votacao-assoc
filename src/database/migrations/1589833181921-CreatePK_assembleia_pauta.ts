@@ -7,7 +7,7 @@ export default class CreatePKAssembleiaPauta1589833181921
       'pautas',
       new TableForeignKey({
         name: 'fk_assembleia_pauta',
-        columnNames: ['assembleia_id'],
+        columnNames: ['assembleiaId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'assembleias',
       }),
