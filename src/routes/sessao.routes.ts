@@ -16,11 +16,7 @@ sessaoRouter.post('/', async (request, response) => {
   try {
     const { inicio, pautaId, duracao } = request.body;
 
-    if (duracao) {
-      const fim = add(new Date(inicio), { minutes: duracao });
-    } else {
-      const fim = add(new Date(inicio), { minutes: 1 });
-    }
+    const fim = add(new Date(inicio), { minutes: duracao || 1 });
 
     const criarSessao = new SessaoCriar();
 
